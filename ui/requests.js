@@ -1,15 +1,16 @@
-const form = document.querySelector('form');
+const hashForm = document.querySelector('.hash-form');
+const encryptionForm = document.querySelector('.encryption-form');
 
-form.addEventListener('submit', (event) => {
+hashForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const textarea = form.querySelector('textarea');
+    const textarea = hashForm.querySelector('textarea');
     const content = textarea.value;
 
-    const select = form.querySelector('select');
+    const select = hashForm.querySelector('select');
     const chosenAlgo = select.value;
 
-    fetch('http://localhost:3000/', {
+    fetch('http://localhost:3000/hash', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -19,6 +20,35 @@ form.addEventListener('submit', (event) => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            document.querySelector('#server-response').textContent = data.message;
+            document.querySelector('#server-response-hash').textContent = "Réponse  :" + data.message;
         });
 });
+
+encryptionForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const textarea = encryptionForm.querySelector('textarea');
+    const content = textarea.value;
+
+    const select = encryptionForm.querySelector('select');
+    const chosenAlgo = select.value;
+
+    const input = document.querySelector('input[name="key"]');
+    const key = input.value;
+
+
+    fetch('http://localhost:3000/encrypt', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ content, chosenAlgo, key })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            document.querySelector('#server-response-encryption').textContent = "Réponse  :" + data.message;
+        });
+});
+
+
