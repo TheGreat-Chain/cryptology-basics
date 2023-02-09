@@ -6,12 +6,15 @@ form.addEventListener('submit', (event) => {
     const textarea = form.querySelector('textarea');
     const content = textarea.value;
 
+    const select = form.querySelector('select');
+    const chosenAlgo = select.value;
+
     fetch('http://localhost:3000/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ content })
+        body: JSON.stringify({ content, chosenAlgo})
     })
         .then(response => response.json())
         .then(data => {
