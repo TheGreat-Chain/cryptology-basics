@@ -42,6 +42,25 @@
     </form>
     <p id="server-response-encryption">Réponse  :</p>
 
+    <h2> Déchiffrement : </h2>
+    <form method="post" class="decryption-form">
+        <label for="decryption-algos">Algorithme de chiffrement : </label>
+        <select id="decryption-algos" name="algos">
+            <option value="aes">AES</option>
+            <option value="rsa">RSA</option>
+        </select>
+        <br>
+
+        <label>Clé privée : <input required type="text" name="decryption-key"></label>
+        <br>
+        <textarea placeholder="Tappez votre message à déchiffrer ici"></textarea>
+        <br>
+
+        <input type="submit">
+    </form>
+    <p id="server-response-decryption">Réponse  :</p>
+
+
 
     <script src="requests.js"></script>
 </body>

@@ -51,7 +51,23 @@ app.post('/encrypt', (req, res) => {
     res.json({ message : result.toString() });
 });
 
+app.post('/decrypt', (req, res) => {
+    let algo = req.body.chosenAlgo;
+    let content = req.body.content;
+    let key = req.body.key;
+    console.log("req : ", req.body);
 
+    let result;
+    if(algo === "aes") {
+        result = CryptoJS.AES.decrypt(content, key);
+    } else if(algo == "rsa") {
+        res.json({ message : "L'algorithme sélectionné n'est pas encore traité."});
+    } else {
+        res.json({ message : "L'algorithme sélectionné n'est pas traité."});
+    }
+    console.log(result.toString());
+    res.json({ message : result.toString() });
+});
 
 app.listen(3000, () => {
     console.log('Le serveur écoute sur le port 3000');
