@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cryptography basics</title>
+</head>
+<body>
+    <h1>Testez les fonctions de hashage et de chiffrement !</h1>
+
+    <form method="post" class="hash-form">
+        <label for="algos">Algorithme de chiffrement : </label>
+        <select id="algos" name="algos">
+            <option value="md5">MD5</option>
+            <option value="sha256">SHA-256</option>
+            <option value="keccak512">Keccak-512</option>
+            <option value="ripemd160">RipeMD160</option>
+        </select>
+        <br>
+
+        <textarea placeholder="Tappez votre message à chiffrer ici"></textarea>
+        <br>
+        <input type="submit">
+    </form>
+
+
+    <script src="requests.js"></script>
+</body>
+</html>
